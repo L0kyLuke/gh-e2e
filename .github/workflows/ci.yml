@@ -25,6 +25,7 @@ jobs:
       - name: Cypress run
         uses: cypress-io/github-action@v5
         with:
+          project: ./e2e
           browser: chrome
       - name: build docker containers
         run: |
