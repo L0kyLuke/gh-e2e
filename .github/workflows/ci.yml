@@ -19,7 +19,7 @@ jobs:
       - uses: actions/upload-artifact@v3
         with:
           name: build-code
-          path: dist/
+          path: cypress/
   e2e-test:
     runs-on: ubuntu-latest
     needs: build
@@ -28,7 +28,7 @@ jobs:
         - uses: actions/download-artifact@v3
           with:
             name: build-code
-            path: dist/
+            path: cypress/
         - uses: cypress-io/github-action@v5
           with:
             project: .
