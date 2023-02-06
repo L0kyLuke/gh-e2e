@@ -8,13 +8,13 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
       - name: build docker containers
+        dockerfile: cypress-16.dockerfile
         run: |
           docker run -d -p 3001:3000 jaimesalas/hangman-api
           docker run -d -p 8080:8080 -e API_URL=http://localhost:3001 jaimesalas/hangman-front
           cd e2e
+          docker build . --file cypress-16 --tag $image
           npm run open
-          RUN npm init -y 
-          RUN npm install cypress typescript -D
       - name: Cypress run
         uses: cypress-io/github-action@v5
         with:
