@@ -8,7 +8,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
       - name: Build and Push Docker Image
-        working-directory: ./hangman-api
+        working-directory: ./e2e
         env: # Datos para loguearnos en DockerHub ya que nuestras imágenes se alojan allí
           DOCKER_USER: "xopiploky"
           DOCKER_REPOSITORY: "cypress-16"
