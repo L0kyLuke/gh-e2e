@@ -12,7 +12,7 @@ jobs:
           cache: 'npm'
           cache-dependency-path: hangman-e2e/e2e/package-lock.json
       - name: build
-        working-directory: ./hangman-e2e
+        working-directory: ./hangman-e2e/e2e 
         run: |
           npm ci
           npm run build --if-present
@@ -25,7 +25,7 @@ jobs:
       - name: Cypress run
         uses: cypress-io/github-action@v5
         with:
-
+          project: ./e2e
           browser: chrome
       - name: build docker containers
         run: |
