@@ -25,7 +25,3 @@ jobs:
         with:
           project: .
           browser: chrome
-      - name: build docker containers
-        run: |
-          
-          npm run open
