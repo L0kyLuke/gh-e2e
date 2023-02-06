@@ -16,17 +16,11 @@ jobs:
         run: |
           npm ci
           npm run build --if-present
-  cypress-run:
-    runs-on: ubuntu-22.04
-    needs: build
-    steps:
       - name: Checkout
         uses: actions/checkout@v3
       - name: Cypress run
         uses: cypress-io/github-action@v5
         with:
-          build: npm run build
-          start: npm run test:e2e:ci
           project: ./e2e
           browser: chrome
       - name: build docker containers
