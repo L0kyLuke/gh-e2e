@@ -9,7 +9,7 @@ jobs:
         uses: actions/checkout@v3
       - name: Build and Push Docker Image
         working-directory: ./e2e
-        env: # Datos para loguearnos en DockerHub ya que nuestras imágenes se alojan allí
+        env:
           DOCKER_USER: "xopiploky"
           DOCKER_REPOSITORY: "cypress-16"
           DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
