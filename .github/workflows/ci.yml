@@ -7,8 +7,18 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
+      - name: Build and Push Docker Image
+        working-directory: ./hangman-api
+        env: # Datos para loguearnos en DockerHub ya que nuestras imágenes se alojan allí
+          DOCKER_USER: "xopiploky"
+          DOCKER_REPOSITORY: "cypress-16"
+          DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+        run: | 
+          echo $DOCKER_PASSWORD | docker login --username $DOCKER_USER --password-stdin
+          image=$DOCKER_USER/$DOCKER_REPOSITORY:$(date +%s)
+          docker build . --file cypress-16 --tag $image
+          docker push $image
       - name: build docker containers
-        dockerfile: cypress-16.dockerfile
         run: |
           docker run -d -p 3001:3000 jaimesalas/hangman-api
           docker run -d -p 8080:8080 -e API_URL=http://localhost:3001 jaimesalas/hangman-front
