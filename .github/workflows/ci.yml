@@ -7,6 +7,11 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
+      - name: Cypress run
+        uses: cypress-io/github-action@v5
+        with:
+          project: ./e2e
+          browser: chrome
       - name: build docker containers
         run: |
           docker run -d -p 3001:3000 jaimesalas/hangman-api
@@ -14,12 +19,6 @@ jobs:
           cd e2e
           docker build . --file cypress-16 --tag $image
           npm run open
-      - name: Cypress run
-        uses: cypress-io/github-action@v5
-        with:
-          project: ./e2e
-          browser: chrome
-        run: |
           RUN npm init -y 
           RUN npm install cypress typescript -D
 
