@@ -25,10 +25,11 @@ jobs:
       - name: Cypress run
         uses: cypress-io/github-action@v5
         with:
+          project: ./e2e
           browser: chrome
       - name: build docker containers
         run: |
           docker run -d -p 3001:3000 jaimesalas/hangman-api
           docker run -d -p 8080:8080 -e API_URL=http://localhost:3001 jaimesalas/hangman-front
-          cd ./hangman-e2e/e2e
+          cd e2e
           npm run open
